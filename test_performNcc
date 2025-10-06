@@ -1,0 +1,66 @@
+% test_performNCC.m
+% A script to test the core normalized cross-correlation module.
+
+clear; clc; close all;
+
+% --- 1. Setup ---
+% This test requires a fully preprocessed image.
+% We'll run the logic from our master preprocessing script first.
+disp('--- Running Full Preprocessing to get a clean image ---');
+ref_img = imread('reference_note_100.jpg');
+test_img_raw = imread('test_note_100.jpg');
+
+% Pre-Alignment
+test_img_denoised = applyNoiseFilter('test_note_100.jpg');
+test_img_standardized = imrotate(test_img_denoised, -90);
+ref_height = size(ref_img, 1);
+test_img_standardized = imresize(test_img_standardized, [ref_height, NaN]);
+
+% Geometric Alignment
+ref_gray = convertToGrayscale(ref_img);
+test_gray = convertToGrayscale(test_img_standardized);
+[ref_points, ref_features] = detectAndExtractFeatures(ref_gray);
+[test_points, test_features] = detectAndExtractFeatures(test_gray);
+[matched_points_test, matched_points_ref, ~] = ...
+    matchFeaturesBetweenImages(test_points, test_features, ref_points, ref_features);
+[tform, ~] = estimateHomography(matched_points_test, matched_points_ref);
+aligned_img = warpImage(test_img_standardized, ref_img, tform);
+
+% Photometric Normalization
+final_processed_gray = normalizeIllumination(aligned_img);
+disp('--- Preprocessing Complete ---');
+
+
+% Now, setup for the NCC test
+disp('Loading template...');
+template_filename = 'template_ashoka.jpg';
+if ~exist(template_filename, 'file'), error('Template image not found.'); end
+template_color = imread(template_filename);
+template_gray = convertToGrayscale(template_color);
+
+
+% --- 2. Execution ---
+disp('Running performNCC.m...');
+correlation_map = performNCC(final_processed_gray, template_gray);
+
+
+% --- 3. Visualization ---
+disp('Displaying results...');
+figure('Name', 'NCC Test', 'NumberTitle', 'off');
+
+subplot(2, 2, 1);
+imshow(final_processed_gray);
+title('Input: Processed Image');
+
+subplot(2, 2, 2);
+imshow(template_gray);
+title('Input: Template');
+
+subplot(2, 2, [3, 4]);
+% Use surf to better visualize the peak in the correlation map
+surf(correlation_map), shading flat;
+title('Output: Correlation Map');
+xlabel('X-offset');
+ylabel('Y-offset');
+
+disp('Test script finished.');
