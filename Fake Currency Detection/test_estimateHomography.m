@@ -6,7 +6,7 @@ clear; clc; close all;
 % --- 1. Setup ---
 disp('Loading images...');
 ref_img_color = imread('reference_note_100.png');
-test_img_color = imread('test_note_100.jpg');
+test_img_color = imread('test_note_100_1.jpg');
 
 % --- 2. Full Pipeline Execution ---
 % Step A: Pre-process test image (orientation and scale)

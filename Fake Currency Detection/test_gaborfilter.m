@@ -6,8 +6,8 @@ clear; clc; close all;
 % --- 1. Setup ---
 disp('Loading all three images...');
 ref_img = imread('reference_note_100.png');
-real_photo = imread('test_note_100.jpg');
-fake_photo = imread('test_note_fake.jpg');
+real_photo = imread('test_note_100_1.jpg');
+fake_photo = imread('test_note_fake_colour.jpg');
 
 % --- 2. Gabor Filter Design ---
 wavelength = 4;
@@ -26,7 +26,7 @@ figure('Name', 'Gabor Response Comparison', 'NumberTitle', 'off');
 
 % --- CASE 1: Ideal Reference Note ---
 disp('Processing Case 1: Ideal Reference...');
-roi_rect = [365, 1, 55, size(ref_img, 1)-1]; % Use the good ROI for the thread
+roi_rect = [945, 1, 65, size(ref_img, 1)-1]; ; % Use the good ROI for the thread
 roi_ref = extractROI(ref_img, roi_rect);
 response_ref = abs(imfilter(im2double(roi_ref), g.SpatialKernel, 'conv'));
 

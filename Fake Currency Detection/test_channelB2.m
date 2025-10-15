@@ -7,7 +7,7 @@ clear; clc; close all;
 disp('Loading images...');
 ref_img = imread('reference_note_100.png');
 real_photo = imread('test_note_100_1.jpg');
-fake_photo = imread('test_note_fake_2.jpg');
+fake_photo = imread('test_note_fake_colour.jpg');
 
 % --- 2. Preprocessing ---
 disp('Preprocessing real photo...');

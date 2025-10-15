@@ -5,9 +5,9 @@ clear; clc; close all;
 
 % --- 1. Setup ---
 disp('Loading all three images...');
-ref_img = imread('test_note_100.jpg');
+ref_img = imread('test_note_100_1.jpg');
 real_photo = imread('reference_note_100.png');
-fake_photo = imread('test_note_fake.jpg');
+fake_photo = imread('test_note_fake_colour.jpg');
 
 % --- 2. Preprocessing for Test Images ---
 disp('Preprocessing real photo...');

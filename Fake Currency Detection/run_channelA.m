@@ -8,11 +8,11 @@ disp('--- Starting Full Preprocessing Pipeline ---');
 % --- 1. Load Images ---
 disp('Step 1: Loading images...');
 ref_img = imread('reference_note_100.png');
-test_img_raw = imread('test_note_fake_2.jpg');
+test_img_raw = imread('test_note_fake_colour.jpg');
 
 % --- 2. Pre-Alignment Processing ---
 disp('Step 2: Denoising and standardizing test image...');
-test_img_denoised = applyNoiseFilter('test_note_fake_2.jpg');
+test_img_denoised = applyNoiseFilter('test_note_fake_colour.jpg');
 
 ref_height = size(ref_img, 1);
 test_img_standardized = imresize(test_img_denoised, [ref_height, NaN]); % Scale
@@ -59,7 +59,7 @@ imshowpair(ref_img, final_processed_img, 'blend');
 title('Blended Overlay');
 % --- 2. Template Library ---
 % Define all the templates we want to search for.
-template_files = {'template_ashoka.jpg','template_verysmall_100.jpg','template_ashoka.png','template_sathyam.png', 'template_devanagiri.jpg', 'template_rbi_seal.jpg', 'template_small100.jpg'};
+template_files = {'template_pattern.jpg','template_kuthira.jpg','template_verysmall_100.jpg','template_ashoka.png','template_sathyam.png', 'template_devanagiri.jpg', 'template_rbi_seal.jpg', 'template_small100.jpg'};
 detection_threshold = 0.5; % Let's set a threshold for a "pass"
 results = {};
 

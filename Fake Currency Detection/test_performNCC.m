@@ -7,9 +7,9 @@ clear; clc; close all;
 % This test requires a fully preprocessed image.
 disp('--- Running Full Preprocessing to get a clean image ---');
 ref_img = imread('reference_note_100.png');
-test_img_raw = imread('test_note_100_1.jpg');
+test_img_raw = imread('test_note_fake_colour.jpg');
 % ... (Full preprocessing pipeline)
-test_img_standardized = applyNoiseFilter('test_note_100_1.jpg');
+test_img_standardized = applyNoiseFilter('test_note_fake_colour.jpg');
 %test_img_standardized = imrotate(test_img_denoised, -90);
 ref_height = size(ref_img, 1);
 test_img_standardized = imresize(test_img_standardized, [ref_height, NaN]);
