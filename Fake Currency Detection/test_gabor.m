@@ -5,7 +5,7 @@ clear; clc; close all;
 
 % --- 1. Setup ---
 disp('Loading reference image...');
-ref_img = imread('reference_note_100.png');
+ref_img = imread('test_note_fake_colour.jpg');
 ref_gray = convertToGrayscale(ref_img);
 
 disp('Applying Gabor filters at multiple orientations...');

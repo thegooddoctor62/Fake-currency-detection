@@ -5,9 +5,9 @@ clear; clc; close all;
 
 % --- 1. Setup ---
 disp('Loading images...');
-ref_filename = 'reference_note_100.png';
+ref_filename = 'reference_note_10.png';
 real_photo_filename = 'test_note_100_1.jpg';
-fake_photo_filename = 'test_note_fake_colour.jpg';
+fake_photo_filename = 'test_note_fake_2.jpg';
 
 % --- 2. Preprocessing ---
 disp('Preprocessing real photo...');
@@ -61,7 +61,7 @@ function scores_B = run_channel_B(aligned_color_image, case_name)
 end
 
 function [score, roi_rect] = analyzeSecurityThreadColor(aligned_color_image)
-    roi_rect = [945, 1, 65, size(aligned_color_image, 1)-1]; 
+    roi_rect = [930, 25, 105, 725]
     thread_roi_color = extractROI(aligned_color_image, roi_rect);
     thread_lab = rgb2lab(thread_roi_color);
     a_channel = thread_lab(:,:,2);

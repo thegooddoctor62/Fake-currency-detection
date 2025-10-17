@@ -8,11 +8,11 @@ disp('--- Starting Full Preprocessing Pipeline ---');
 % --- 1. Load Images ---
 disp('Step 1: Loading images...');
 ref_img = imread('reference_note_100.png');
-test_img_raw = imread('test_note_100.jpg');
+test_img_raw = imread('test_note_fake_colour.jpg');
 
 % --- 2. Pre-Alignment Processing ---
 disp('Step 2: Denoising and standardizing test image...');
-test_img_denoised = applyNoiseFilter('test_note_100.jpg');
+test_img_denoised = applyNoiseFilter('test_note_fake_colour.jpg');
 %test_img_standardized = imrotate(test_img_denoised, -90); % Rotate
 ref_height = size(ref_img, 1);
 test_img_standardized = imresize(test_img_denoised, [ref_height, NaN]); % Scale

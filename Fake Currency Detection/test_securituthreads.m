@@ -60,7 +60,7 @@ disp('------------------------------------');
 
 function [score, roi_rect, viz_data] = analyzeSecurityThreadColor(aligned_color_image)
     % This function analyzes the thread based on its "greenness" in the L*a*b* space.
-    roi_rect = [955, 1, 65, size(aligned_color_image, 1)-1]; 
+    roi_rect = [867, 122, 126, 617]  
     thread_roi_color = extractROI(aligned_color_image, roi_rect);
     thread_lab = rgb2lab(thread_roi_color);
     a_channel = thread_lab(:,:,2);

@@ -6,12 +6,12 @@ clear; clc; close all;
 % --- 1. Setup ---
 disp('Loading images...');
 ref_img_color = imread('reference_note_100.png');
-test_img_color = imread('test_note_100_1.jpg');
+test_img_color = imread('test_note_fake_colour.jpg');
 
 % --- 2. Full Pipeline Execution ---
 % Step A: Pre-process test image (orientation and scale)
 disp('Standardizing test image...');
-test_img_color = imrotate(test_img_color, -90); % Rotate
+test_img_color = imrotate(test_img_color, 0); % Rotate
 ref_height = size(ref_img_color, 1);
 test_img_color = imresize(test_img_color, [ref_height, NaN]); % Scale
 

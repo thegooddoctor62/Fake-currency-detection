@@ -6,7 +6,7 @@ clear; clc; close all;
 % --- 1. Setup ---
 % Define file paths for both images.
 ref_filename = 'reference_note_100.png';
-test_filename = 'test_note_100.jpg';
+test_filename = 'test_note_100_1.jpg';
 
 % Load images
 disp('Loading images...');

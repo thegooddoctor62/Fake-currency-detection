@@ -6,7 +6,7 @@ clear; clc; close all;
 
 % --- 1. Load Image ---
 disp('Loading reference image...');
-ref_img = imread('reference_note_100.png');
+ref_img = imread('reference_note_10.png');
 
 % --- 2. Display Image ---
 figure('Name', 'Interactive ROI Selector', 'WindowState', 'maximized');
